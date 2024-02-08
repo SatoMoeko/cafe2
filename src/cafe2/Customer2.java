@@ -2,10 +2,10 @@ package cafe2;
 
 import java.util.Scanner;
 
-public class Customer1 extends Customer {
+public class Customer2 extends Customer {
 
-	public Customer1() {
-		setName("しばいぬ");
+	public Customer2() {
+		setName("ポメ");
 	}
 
 	//クイズ選択
@@ -23,7 +23,7 @@ public class Customer1 extends Customer {
 
 	//クイズ１
 	public void customerQuiz1(Player player) {
-		System.out.println(this.name + "「甘くてぽかぽかするのがいいな」\n");
+		System.out.println(this.name + "「ねむいから目が覚めるやつ！」\n");
 		foodMenu();
 		int foodSelect = new Scanner(System.in).nextInt();
 		drinkMenu();
@@ -111,13 +111,13 @@ public class Customer1 extends Customer {
 	//フードメニュー表示
 	public void foodMenu() {
 		System.out.println("食べ物は何を提供する？");
-		System.out.print("チョコドーナツ:1\nスコーン:2\n豆ミートパイ:3\nいぬグミ:4\n>");
+		System.out.print("カップケーキ:1\nワッフル:2\nハンバーガー:3\nほねガム:4\n>");
 	}
 
 	//ドリンクメニュー表示
 	public void drinkMenu() {
 		System.out.println("飲み物は何を提供する？");
-		System.out.print("ホットコーヒー:1\nアイスティー:2\nサイダー:3\nレモン水:4\n>");
+		System.out.print("ホットラテ:1\nいぬフラッペ:2\nポタージュ:3\nいちご水:4\n>");
 	}
 
 }

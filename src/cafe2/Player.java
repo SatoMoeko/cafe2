@@ -35,64 +35,78 @@ public class Player {
 	//掃除する
 	public void clean() {
 		int random = new Random().nextInt(5);
-
-		if (random == 0) {
+		switch (random) {
+		case 0:
 			System.out.println("\nシンクをぴかぴかに磨いた。集中しすぎて3時間経っていた");
 			countLevel(5, -5, -2);
-		} else if (random == 1) {
+			break;
+		case 1:
 			System.out.println("\n床の掃き掃除をした。気持ちがいい");
 			countLevel(5, 5, -1);
-		} else if (random == 2) {
+			break;
+		case 2:
 			System.out.println("\n冷蔵庫を整頓した。仕事のスピードがあがった");
 			countLevel(5, 5, 1);
-		} else if (random == 3) {
+			break;
+		case 3:
 			System.out.println("\n机と椅子を拭いた。飲食店に清潔感は大切");
 			countLevel(10, 5, -1);
-		} else {
+			break;
+		default:
 			System.out.println("\n食器を洗った。うっかりカップを落として割った");
 			countLevel(-5, -5, -1);
+
 		}
 	}
 
 	//SNSを更新する
 	public void sns() {
 		int random = new Random().nextInt(5);
-
-		if (random == 0) {
+		switch (random) {
+		case 0:
 			System.out.println("\n新作メニューを宣伝した。結構みてもらえた");
 			countLevel(30, 10, -1);
-		} else if (random == 1) {
+			break;
+		case 1:
 			System.out.println("\n店内を撮影してのせてみた。あんまり反応はない");
 			countLevel(5, 5, -1);
-		} else if (random == 2) {
+			break;
+		case 2:
 			System.out.println("\nおいしかったと言ってくれてる人がいる！いいね");
 			countLevel(20, 10, -1);
-		} else if (random == 3) {
+			break;
+		case 3:
 			System.out.println("\n店員に愛想がないと口コミされてた……。反省");
 			countLevel(-10, -20, -1);
-		} else {
+			break;
+		default:
 			System.out.println("\nプライベート用のSNSと間違えて投稿したけどなんかうけた。");
 			countLevel(10, -5, -1);
 		}
 	}
 
+	
+
 	//さぼる
 	public void skip() {
 		int random = new Random().nextInt(5);
-
-		if (random == 0) {
+		switch (random) {
+		case 0:
 			System.out.println("\nマインスイーパーたのしすぎる");
 			countLevel(-5, -10, 1);
-		} else if (random == 1) {
+			break;
+		case 1:
 			System.out.println("\nひたすら猫ミームを見てた");
 			countLevel(-5, -5, 1);
-		} else if (random == 2) {
+			break;
+		case 2:
 			System.out.println("\n昼休みに仮眠をとったら30分寝過ごした");
 			countLevel(-5, -10, -1);
-		} else if (random == 3) {
+			break;
+		case 3:
 			System.out.println("\n外を眺めてぼんやりした。お客さんこないかな……");
 			countLevel(-1, -1, 1);
-		} else {
+		default:
 			System.out.println("\n偵察と称して隣町のカフェにいった。ケーキおいしい");
 			countLevel(5, -5, -2);
 		}
@@ -100,15 +114,29 @@ public class Player {
 
 	//接客する
 	public void serve() {
-		System.out.println("\nお客さんがきた！いらっしゃいませ～");
+		System.out.println("\nお客さんがきた！");
 		System.out.printf("接客する:1\n無視する:2\n>");
 		int select = new Scanner(System.in).nextInt();
+		
 
 		switch (select) {
-		case 1://接客する
+		case 0://接客する
+			System.out.println("\nいらっしゃいませ！ご注文は？");
+			int random = new Random().nextInt(3);
+			switch(random) {
+			case 0:
 			
+				break;
+			case 1:
+			
+				break;
+			default:
+			
+			}
 			break;
 		case 2://無視する
+			System.out.println("\n最低のcafeだね");
+			countLevel(-50, -50, -5);
 			break;
 		default:
 			System.out.println("1と2から選んでね\n");
@@ -123,7 +151,6 @@ public class Player {
 
 	//カフェ評価
 	public void showRank() {
-
 		//お店の評判
 		if (this.cafeLevel <= 0) {
 			System.out.println("閑古鳥ないてる。このままじゃやばい。");
@@ -149,7 +176,6 @@ public class Player {
 		} else if (this.personalLevel > 80) {
 			System.out.println("メディアでもひっぱりだこ。ここまでよくがんばりました。");
 		}
-
 	}
 
 	//データをcsv形式の文字列に変換

@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -19,16 +20,15 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		File file = new File("save.csv");
 		List<Player> list = new ArrayList<>();
-		;
 
 		// メニュー画面
 		while (true) {
 			System.out.println("\n~start menu~");
 			System.out.print("new cafe open:1\nつづきから:2\nおわり:3\n>");
-			int select = new Scanner(System.in).nextInt();
+			int select = new Scanner(System.in).nextInt() - 1;
 
 			switch (select) {
-			case 1: //新しいカフェを開く
+			case 0: //新しいカフェを開く
 				System.out.print("\ncafeの名前を決めてね>>");
 				String name = new Scanner(System.in).nextLine();
 				Player player = new Player(name, 0, 0, 10);
@@ -39,7 +39,7 @@ public class Main {
 				save(file, list);
 				break;
 
-			case 2: //つづきからはじめる
+			case 1: //つづきからはじめる
 				if (file.exists()) {
 					list = load(file);
 				} else {
@@ -59,7 +59,7 @@ public class Main {
 				save(file, list);
 				break;
 
-			case 3: //終了する
+			case 2: //終了する
 				System.out.println("アプリを終了します。");
 				return;
 			default:
@@ -75,20 +75,24 @@ public class Main {
 			if (player.getHp() > 0) {
 				System.out.println("なにする?");
 				System.out.print("掃除する:1\nさぼる:2\nSNSをチェックする:3\n>");
-				int jobSelect = new Scanner(System.in).nextInt();
-
-				switch (jobSelect) {
-				case 1://掃除する
-					player.clean();
-					break;
-				case 2://さぼる
-					player.skip();
-					break;
-				case 3://SNSを更新する
-					player.sns();
-					break;
-				default:
-					System.out.println("1～3どれかから選んでね\n");
+				int jobSelect = new Scanner(System.in).nextInt() - 1;
+				int random = new Random().nextInt(4);
+				if (random == 2) {
+					player.serve();//接客する
+				} else {
+					switch (jobSelect) {
+					case 0://掃除する
+						player.clean();
+						break;
+					case 1://さぼる
+						player.skip();
+						break;
+					case 2://SNSを更新する
+						player.sns();
+						break;
+					default:
+						System.out.println("1～3どれかから選んでね\n");
+					}
 				}
 			} else {
 				System.out.println("\n閉店の時間です！おつかれさま");
@@ -98,15 +102,15 @@ public class Main {
 
 				//続けるか否か
 				System.out.print("\n明日も働く?\nはい:1 おやすみする:2\n>");
-				int select = new Scanner(System.in).nextInt();
+				int select = new Scanner(System.in).nextInt() - 1;
 
 				switch (select) {
-				case 1:
+				case 0:
 					System.out.println("あたらしい朝が来た！");
 					System.out.println(player.getName() + " cafeに出勤したよ\n");
 					player.setHp(10);
 					break;
-				case 2:
+				case 1:
 					return;
 				default:
 					System.out.println("1と2から選んでね\n");

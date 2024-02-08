@@ -14,23 +14,19 @@ public class Customer {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//親愛度操作
+	public void countLove(Player player, int giveLove) {
+		//現在のレベルから親愛度を増減する
+		setLove(getLove() + giveLove);
+	}
+
 	//カプセル化
 	public String getName() {
 		return this.name;
 	}
 
-	public void setName(int love) {
-		this.love = love;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getLove() {
@@ -40,5 +36,4 @@ public class Customer {
 	public void setLove(int love) {
 		this.love = love;
 	}
-
 }
