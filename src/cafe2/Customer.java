@@ -20,7 +20,7 @@ public class Customer {
 	}
 
 	//親愛度操作
-	public void countLove(Player player, int giveLove) {
+	public void countLove(int giveLove)  {
 		//現在のレベルから親愛度を増減する
 		setLove(getLove() + giveLove);
 	}
@@ -46,4 +46,6 @@ public class Customer {
 	public void setLove(int love) {
 		this.love = love;
 	}
+
+	
 }

@@ -31,15 +31,15 @@ public class Customer2 extends Customer {
 		if (foodSelect == "ハンバーガー" && drinkSelect == "ホットコーヒー") {
 			System.out.println("「ガツンときた！やるぞやるぞ」");
 			player.countLevel(20, 20, -5);
-			super.countLove(player, 40);
+			super.countLove(40);
 		} else if (foodSelect == "ハンバーガー" || drinkSelect == "ホットコーヒー") {
 			System.out.println("「わるくないね～」");
 			player.countLevel(10, 10, -5);
-			super.countLove(player, 30);
+			super.countLove(30);
 		} else {
 			System.out.println("「これじゃないかも……」");
 			player.countLevel(-10, -10, -5);
-			super.countLove(player, -10);
+			super.countLove(-10);
 		}
 	}
 
@@ -53,15 +53,15 @@ public class Customer2 extends Customer {
 		if (foodSelect == "" && drinkSelect == "") {
 			System.out.println("「ありがとう！たすかる！」");
 			player.countLevel(20, 20, -5);
-			super.countLove(player, 45);
+			super.countLove(45);
 		} else if (foodSelect == "" || drinkSelect == "") {
 			System.out.println("「ギリギリ！」");
 			player.countLevel(10, 10, -5);
-			super.countLove(player, 30);
+			super.countLove(30);
 		} else {
 			System.out.println("「おそいよ～」");
 			player.countLevel(-10, -10, -5);
-			super.countLove(player, -10);
+			super.countLove(-10);
 		}
 	}
 
@@ -75,15 +75,15 @@ public class Customer2 extends Customer {
 		if (foodSelect == "カップケーキ" && drinkSelect == "いぬフラッペ") {
 			System.out.println(this.name + "「" + player.name + " cafeってつい毎日来たくなる」");
 			player.countLevel(30, 30, -5);
-			super.countLove(player, -100);
+			super.countLove(-100);
 		} else if (foodSelect == "カップケーキ" || drinkSelect == "いぬフラッペ") {
 			System.out.println(this.name + "「いつも安定のよさある！」");
 			player.countLevel(20, 20, -3);
-			super.countLove(player, 40);
+			super.countLove(40);
 		} else {
 			System.out.println(this.name + "「あきてきたかも～メニューかえたほうがいいんじゃない」");
 			player.countLevel(-10, -10, -5);
-			super.countLove(player, -10);
+			super.countLove(-10);
 		}
 	}
 

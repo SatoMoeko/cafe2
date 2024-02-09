@@ -31,15 +31,15 @@ public class Customer1 extends Customer {
 		if (foodSelect == "チョコドーナツ" && drinkSelect == "ホットミルク") {
 			System.out.println("「最高！またくるね」");
 			player.countLevel(20, 20, -5);
-			super.countLove(player, 40);
+			super.countLove(40);
 		} else if (foodSelect == "チョコドーナツ" || drinkSelect == "ホットミルク") {
 			System.out.println("「まあまあだね～」");
 			player.countLevel(10, 10, -5);
-			super.countLove(player, 30);
+			super.countLove(30);
 		} else {
 			System.out.println("「やるきある？」");
 			player.countLevel(-10, -10, -5);
-			super.countLove(player, -10);
+			super.countLove(-10);
 		}
 	}
 
@@ -53,15 +53,15 @@ public class Customer1 extends Customer {
 		if (foodSelect == "豆ミートパイ" && drinkSelect == "サイダー") {
 			System.out.println("「これこれ！午後も仕事がんばれそう！」");
 			player.countLevel(20, 20, -5);
-			super.countLove(player, 45);
+			super.countLove(45);
 		} else if (foodSelect == "豆ミートパイ" || drinkSelect == "サイダー") {
 			System.out.println("「ありがとね～」");
 			player.countLevel(10, 10, -5);
-			super.countLove(player, 30);
+			super.countLove(30);
 		} else {
 			System.out.println("「ふーん」");
 			player.countLevel(-10, -10, -5);
-			super.countLove(player, -10);
+			super.countLove(-10);
 		}
 	}
 
@@ -86,18 +86,18 @@ public class Customer1 extends Customer {
 			System.out.println(this.name + "「すっかり" + player.name + " cafeがお気に入りだよ！」");
 			System.out.println("かいけん「" + player.name + "さんのセレクトいけてるね」");
 			player.countLevel(30, 30, -5);
-			super.countLove(player, -100);
+			super.countLove(-100);
 		} else if ((foodSelect == "スコーン" || drinkSelect == "アイスティー")
 				&& (foodSelect1 == "いぬグミ" || drinkSelect1 == "レモン水")) {
 			System.out.println(this.name + "「ついつい長居したくなるんだよね」");
 			System.out.println("かいけん「ほかのメニューもきになるな～」");
 			player.countLevel(20, 20, -3);
-			super.countLove(player, 40);
+			super.countLove(40);
 		} else {
 			System.out.println(this.name + "「このゆるさがいいよね」");
 			System.out.println("かいけん「そうかも」");
 			player.countLevel(-10, -10, -5);
-			super.countLove(player, -10);
+			super.countLove(-10);
 		}
 	}
 
