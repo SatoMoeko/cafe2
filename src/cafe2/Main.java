@@ -78,7 +78,7 @@ public class Main {
 				int jobSelect = new Scanner(System.in).nextInt() - 1;
 				int random = new Random().nextInt(4);
 				if (random == 2) {
-					player.serve();//接客する
+					player.serve(player);//接客する
 				} else {
 					switch (jobSelect) {
 					case 0://掃除する

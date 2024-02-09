@@ -4,13 +4,18 @@ public class Customer {
 	String name;
 	int love;
 
-	public Customer() {
+	public Customer(String name, int love) {
 		this.name = name;
 		this.love = love;
 	}
 
+	//クイズ選択
+	public void choiceQuiz(Player player) {
+
+	}
+
 	//クイズ部分
-	public void customerQuiz() {
+	public void customerQuiz(Player player) {
 
 	}
 
@@ -18,6 +23,11 @@ public class Customer {
 	public void countLove(Player player, int giveLove) {
 		//現在のレベルから親愛度を増減する
 		setLove(getLove() + giveLove);
+	}
+
+	//データをcsv形式の文字列に変換
+	public String toCSV() {
+		return String.format("%s,%d", this.name, this.love);
 	}
 
 	//カプセル化

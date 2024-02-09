@@ -85,8 +85,6 @@ public class Player {
 		}
 	}
 
-	
-
 	//さぼる
 	public void skip() {
 		int random = new Random().nextInt(5);
@@ -113,28 +111,27 @@ public class Player {
 	}
 
 	//接客する
-	public void serve() {
-		System.out.println("\nお客さんがきた！");
-		System.out.printf("接客する:1\n無視する:2\n>");
-		int select = new Scanner(System.in).nextInt();
+	public void serve(Player player) {
 		
 
+		System.out.println("\nお客さんがきた！");
+		System.out.printf("接客する:1\n無視する:2\n>");
+		int select = new Scanner(System.in).nextInt()-1;
+
 		switch (select) {
-		case 0://接客する
+		case 0://注文をとる
 			System.out.println("\nいらっしゃいませ！ご注文は？");
 			int random = new Random().nextInt(3);
-			switch(random) {
+			switch (random) {
 			case 0:
-			
 				break;
 			case 1:
-			
 				break;
 			default:
-			
+				
 			}
 			break;
-		case 2://無視する
+		case 1://無視する
 			System.out.println("\n最低のcafeだね");
 			countLevel(-50, -50, -5);
 			break;
@@ -182,6 +179,8 @@ public class Player {
 	public String toCSV() {
 		return String.format("%s,%d,%d", this.name, this.cafeLevel, this.personalLevel);
 	}
+
+
 
 	//カプセル化
 	public String getName() {
