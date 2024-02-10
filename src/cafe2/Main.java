@@ -20,6 +20,7 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		File file = new File("save.csv");
 		List<Player> list = new ArrayList<>();
+		
 
 		// メニュー画面
 		while (true) {
@@ -36,7 +37,7 @@ public class Main {
 				System.out.println(player.getName() + " cafeがオープンしたよ\n");
 
 				work(player);
-				save(file, list);
+				newSave(file, list);
 				break;
 
 			case 1: //つづきからはじめる
@@ -60,7 +61,7 @@ public class Main {
 				break;
 
 			case 2: //終了する
-				System.out.println("アプリを終了します。");
+				System.out.println("おわりU・ω・Uノ");
 				return;
 			default:
 				System.out.println("1～3から選んでね");
@@ -127,7 +128,21 @@ public class Main {
 		}
 	}
 
-	//保存
+	
+	//新規保存
+		public static void newSave(File file, List<Player> list) {
+			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true), "UTF-8"))) {
+				for (Player player : list) {
+					bw.write(player.toCSV());
+					bw.newLine(); //セーブしたい情報の書き込み
+				}
+			} catch (IOException e) {
+				;
+			}
+		}
+	
+	
+	//上書き保存
 	public static void save(File file, List<Player> list) {
 		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
 			for (Player player : list) {

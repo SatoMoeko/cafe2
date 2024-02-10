@@ -1,10 +1,12 @@
 package cafe2;
 
 public class Customer {
+	String owner;
 	String name;
 	int love;
 
-	public Customer(String name, int love) {
+	public Customer(String owner,String name, int love) {
+		this.owner = owner;
 		this.name = name;
 		this.love = love;
 	}

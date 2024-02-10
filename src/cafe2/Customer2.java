@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Customer2 extends Customer {
 
-	public Customer2() {
-		super("ポメ", 0);
+	public Customer2(String owner,String name, int love) {
+		super(owner,"ポメ", love);
 	}
 
 	//クイズ選択
@@ -28,11 +28,11 @@ public class Customer2 extends Customer {
 		String drinkSelect = drinkMenu();
 		System.out.println(foodSelect + "と" + drinkSelect + "を提供した！");
 
-		if (foodSelect == "ハンバーガー" && drinkSelect == "ホットコーヒー") {
+		if (foodSelect.equals("ハンバーガー") && drinkSelect.equals("ホットコーヒー")) {
 			System.out.println("「ガツンときた！やるぞやるぞ」");
 			player.countLevel(20, 20, -5);
 			super.countLove(40);
-		} else if (foodSelect == "ハンバーガー" || drinkSelect == "ホットコーヒー") {
+		} else if (foodSelect.equals("ハンバーガー") || drinkSelect.equals("ホットコーヒー")) {
 			System.out.println("「わるくないね～」");
 			player.countLevel(10, 10, -5);
 			super.countLove(30);
@@ -50,11 +50,11 @@ public class Customer2 extends Customer {
 		String drinkSelect = drinkMenu();
 		System.out.println(foodSelect + "と" + drinkSelect + "を提供した！");
 
-		if (foodSelect == "" && drinkSelect == "") {
+		if (foodSelect.equals("") && drinkSelect.equals("")) {
 			System.out.println("「ありがとう！たすかる！」");
 			player.countLevel(20, 20, -5);
 			super.countLove(45);
-		} else if (foodSelect == "" || drinkSelect == "") {
+		} else if (foodSelect.equals("") || drinkSelect.equals("")) {
 			System.out.println("「ギリギリ！」");
 			player.countLevel(10, 10, -5);
 			super.countLove(30);
@@ -72,11 +72,11 @@ public class Customer2 extends Customer {
 		String drinkSelect = drinkMenu();
 		System.out.println(this.name + "に" + foodSelect + "と" + drinkSelect + "を提供した！");
 
-		if (foodSelect == "カップケーキ" && drinkSelect == "いぬフラッペ") {
+		if (foodSelect.equals("カップケーキ") && drinkSelect.equals("いぬフラッペ")) {
 			System.out.println(this.name + "「" + player.name + " cafeってつい毎日来たくなる」");
 			player.countLevel(30, 30, -5);
 			super.countLove(-100);
-		} else if (foodSelect == "カップケーキ" || drinkSelect == "いぬフラッペ") {
+		} else if (foodSelect.equals("カップケーキ") || drinkSelect.equals("いぬフラッペ")) {
 			System.out.println(this.name + "「いつも安定のよさある！」");
 			player.countLevel(20, 20, -3);
 			super.countLove(40);

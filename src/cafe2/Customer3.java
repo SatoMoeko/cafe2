@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Customer3 extends Customer {
 
-	public Customer3() {
-		super("サモエド", 0);
+	public Customer3(String owner,String name, int love) {
+		super(owner,"サモエド", love);
 	}
 
 	//クイズ選択
@@ -28,11 +28,11 @@ public class Customer3 extends Customer {
 		String drinkSelect = drinkMenu();
 		System.out.println(foodSelect + "と" + drinkSelect + "を提供した！");
 
-		if (foodSelect == "ピザ" && drinkSelect == "野菜ジュース") {
+		if (foodSelect.equals("ピザ") && drinkSelect.equals("野菜ジュース")) {
 			System.out.println("「おなかいっぱい！幸せだ～」");
 			player.countLevel(20, 20, -5);
 			super.countLove(40);
-		} else if (foodSelect == "ピザ" || drinkSelect == "野菜ジュース") {
+		} else if (foodSelect.equals("ピザ") || drinkSelect.equals("野菜ジュース")) {
 			System.out.println("「ちょっとたりないんですが……」");
 			player.countLevel(10, 10, -5);
 			super.countLove(30);
@@ -50,11 +50,11 @@ public class Customer3 extends Customer {
 		String drinkSelect = drinkMenu();
 		System.out.println(foodSelect + "と" + drinkSelect + "を提供した！");
 
-		if (foodSelect == "ピザ" && drinkSelect == "野菜ジュース") {
+		if (foodSelect.equals("ピザ") && drinkSelect.equals("野菜ジュース")) {
 			System.out.println("「わーい！これがおいしんだ！」");
 			player.countLevel(20, 20, -5);
 			super.countLove(45);
-		} else if (foodSelect == "ピザ" || drinkSelect == "野菜ジュース") {
+		} else if (foodSelect.equals("ピザ") || drinkSelect.equals("野菜ジュース")) {
 			System.out.println("「なんかちがうけど、まいっか」");
 			player.countLevel(10, 10, -5);
 			super.countLove(30);
@@ -72,11 +72,11 @@ public class Customer3 extends Customer {
 		String drinkSelect = drinkMenu();
 		System.out.println(this.name + "に" + foodSelect + "と" + drinkSelect + "を提供した！");
 
-		if (foodSelect == "アイスクリーム" && drinkSelect == "ホットココア") {
+		if (foodSelect.equals("アイスクリーム") && drinkSelect.equals("ホットココア")) {
 			System.out.println(this.name + "「" + player.name + " cafeにくると心もお腹も大満足だよ」");
 			player.countLevel(30, 30, -5);
 			super.countLove(-100);
-		} else if (foodSelect == "アイスクリーム" || drinkSelect == "ホットココア") {
+		} else if (foodSelect.equals("アイスクリーム") || drinkSelect.equals("ホットココア")) {
 			System.out.println(this.name + "「こういう日もあり、たまにはね」");
 			player.countLevel(20, 20, -3);
 			super.countLove(40);

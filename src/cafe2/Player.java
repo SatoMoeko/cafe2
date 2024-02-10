@@ -1,5 +1,15 @@
 package cafe2;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -52,9 +62,12 @@ public class Player {
 			System.out.println("\n机と椅子を拭いた。飲食店に清潔感は大切");
 			countLevel(10, 5, -1);
 			break;
-		default:
+		case 4:
 			System.out.println("\n食器を洗った。うっかりカップを落として割った");
 			countLevel(-5, -5, -1);
+			break;
+		default:
+			break;
 
 		}
 	}
@@ -79,9 +92,12 @@ public class Player {
 			System.out.println("\n店員に愛想がないと口コミされてた……。反省");
 			countLevel(-10, -20, -1);
 			break;
-		default:
+		case 4:
 			System.out.println("\nプライベート用のSNSと間違えて投稿したけどなんかうけた。");
 			countLevel(10, -5, -1);
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -104,19 +120,32 @@ public class Player {
 		case 3:
 			System.out.println("\n外を眺めてぼんやりした。お客さんこないかな……");
 			countLevel(-1, -1, 1);
-		default:
+			break;
+		case 4:
 			System.out.println("\n偵察と称して隣町のカフェにいった。ケーキおいしい");
 			countLevel(5, -5, -2);
+			break;
+		default:
+			break;
 		}
 	}
 
 	//接客する
 	public void serve(Player player) {
-		
+		File file = new File("save1.csv");
+		List<Customer> dogs;
+		if (file.exists()) {
+			dogs = load(file);
+		} else {
+			dogs = new ArrayList<>();
+			dogs.add(new Customer1(this.name,"しばいぬ", 0));
+			dogs.add(new Customer2(this.name,"ポメ", 0));
+			dogs.add(new Customer3(this.name,"サモエド", 0));
+		}
 
 		System.out.println("\nお客さんがきた！");
 		System.out.printf("接客する:1\n無視する:2\n>");
-		int select = new Scanner(System.in).nextInt()-1;
+		int select = new Scanner(System.in).nextInt() - 1;
 
 		switch (select) {
 		case 0://注文をとる
@@ -124,12 +153,19 @@ public class Player {
 			int random = new Random().nextInt(3);
 			switch (random) {
 			case 0:
+				dogs.get(0).choiceQuiz(player);
 				break;
 			case 1:
+				dogs.get(1).choiceQuiz(player);
+				break;
+			case 2:
+				dogs.get(2).choiceQuiz(player);
 				break;
 			default:
-				
+				break;
 			}
+			
+			save(file, dogs);
 			break;
 		case 1://無視する
 			System.out.println("\n最低のcafeだね");
@@ -149,15 +185,15 @@ public class Player {
 	//カフェ評価
 	public void showRank() {
 		//お店の評判
-		if (this.cafeLevel <= 0) {
+		if (this.cafeLevel <= 50) {
 			System.out.println("閑古鳥ないてる。このままじゃやばい。");
-		} else if (this.cafeLevel <= 30 && this.cafeLevel > 0) {
+		} else if (this.cafeLevel <= 100 && this.cafeLevel > 50) {
 			System.out.println("ふつうのcafe。あればはいるくらい。");
-		} else if (this.cafeLevel <= 50 && this.cafeLevel > 30) {
+		} else if (this.cafeLevel <= 200 && this.cafeLevel > 100) {
 			System.out.println("町で人気のcafe。常連さんもいるね。");
-		} else if (this.cafeLevel <= 80 && this.cafeLevel > 50) {
+		} else if (this.cafeLevel <= 500 && this.cafeLevel > 200) {
 			System.out.println("話題のcafe。ランチタイムは行列！");
-		} else if (this.cafeLevel > 80) {
+		} else if (this.cafeLevel > 500) {
 			System.out.println("ミシュランにのった！予約しなきゃはいれない！");
 		}
 
@@ -180,7 +216,59 @@ public class Player {
 		return String.format("%s,%d,%d", this.name, this.cafeLevel, this.personalLevel);
 	}
 
+	//上書き保存
+	public static void save(File file, List<Customer> dogs) {
+		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
+			for (Customer customer : dogs) {
+				bw.write(customer.toCSV());
+				bw.newLine(); //セーブしたい情報の書き込み
+			}
+		} catch (IOException e) {
+			;
+		}
+	}
+	
+	//新規保存
+		public static void newSave(File file, List<Customer> dogs) {
+			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true), "UTF-8"))) {
+				for (Customer customer : dogs) {
+					bw.write(customer.toCSV());
+					bw.newLine(); //セーブしたい情報の書き込み
+				}
+			} catch (IOException e) {
+				;
+			}
+		}
 
+	//読み込み
+	public static List<Customer> load(File file) {
+		List<Customer> dogs = new ArrayList<>();
+
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				String[] param = line.split(",");
+				String owner = param[0];
+				String name = param[1];
+				int love = Integer.parseInt(param[2]);
+
+				if (name.equals("しばいぬ")) {
+					Customer1 dog = new Customer1(owner,name, love);
+					dogs.add(dog);
+				} else if (name.equals("ポメ")) {
+					Customer2 dog = new Customer2(owner,name, love);
+					dogs.add(dog);
+				} else if (name.equals("サモエド")) {
+					Customer3 dog = new Customer3(owner,name, love);
+					dogs.add(dog);
+				}
+			}
+		} catch (IOException e) {
+			;
+		}
+		return dogs; //インスタンスを作って返す
+
+	}
 
 	//カプセル化
 	public String getName() {

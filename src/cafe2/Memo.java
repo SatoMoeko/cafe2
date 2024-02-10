@@ -8,8 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Memo {
 
@@ -22,60 +22,52 @@ public class Memo {
 	public void memory() {
 		File file = new File("save1.csv");
 		//リストをつくる
-		Map<String,Integer> dogs=new HashMap<String,Integer>();
-		
-		
-//		//いぬインスタンス化
-//		Customer1 c1 = new Customer1();
-//		Customer2 c2 = new Customer2();
-//		Customer3 c3= new Customer3();
-//		//それぞれリストに格納
-//		dogs.add(c1);
-//		dogs.add(c2);
-//		dogs.add(c3);
+		List<Customer> dogs = new ArrayList<>();
+		//リストに格納
+		dogs.add(new Customer1("しばいぬ", 0));
+		dogs.add(new Customer2("ポメ", 0));
+		dogs.add(new Customer3("サモエド", 0));
+	}
+
+	//保存
+	public static void save(File file, List<Customer> dogs) {
+		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
+			for (Customer customer : dogs) {
+				bw.write(customer.toCSV());
+				bw.newLine(); //セーブしたい情報の書き込み
+			}
+		} catch (IOException e) {
+			;
+		}
+	}
+
+	//読み込み
+	public static List<Customer> load(File file) {
+		List<Customer> dogs = new ArrayList<>();
+
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				String[] param = line.split(",");
+				String name = param[0];
+				int love = Integer.parseInt(param[1]);
+
+				if (name == "しばいぬ") {
+					Customer1 dog = new Customer1(name, love);
+					dogs.add(dog);
+				} else if (name == "ポメ") {
+					Customer2 dog = new Customer2(name, love);
+					dogs.add(dog);
+				} else if (name == "サモエド") {
+					Customer3 dog = new Customer3(name, love);
+					dogs.add(dog);
+				}
+			}
+		} catch (IOException e) {
+			;
+		}
+		return dogs; //インスタンスを作って返す
 
 	}
-	
-	//保存
-		public static void save(File file, Map<String,Integer> dogs) {
-			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
-				for (Customer customer : dogs) {
-					bw.write(customer.toCSV());
-					bw.newLine(); //セーブしたい情報の書き込み
-				}
-			} catch (IOException e) {
-				;
-			}
-		}
-
-		//読み込み
-		public static Map<String,Integer> load(File file) {
-			Map<String,Integer> dogs=new HashMap<String,Integer>();
-
-			try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
-				String line = null;
-				while ((line = br.readLine()) != null) {
-					String[] param = line.split(",");
-					String name = param[0];
-					int love = Integer.parseInt(param[1]);
-					
-					// 名前が一致している場合は加算、そうじゃなければ新規追加
-					if (dogs.containsKey(name)) {
-						dogs.put(name, dogs.get(name) + love);
-					} else {
-						dogs.put(name, love);
-					}
-					
-					
-					
-					
-				}
-			} catch (IOException e) {
-				;
-			}
-			return dogs; //インスタンスを作って返す
-
-		}
-	
 
 }
