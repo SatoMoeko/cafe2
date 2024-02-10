@@ -132,15 +132,15 @@ public class Player {
 
 	//接客する
 	public void serve(Player player) {
-		File file = new File("save1.csv");
+		File file = new File(this.name + ".csv");
 		List<Customer> dogs;
 		if (file.exists()) {
 			dogs = load(file);
 		} else {
 			dogs = new ArrayList<>();
-			dogs.add(new Customer1(this.name,"しばいぬ", 0));
-			dogs.add(new Customer2(this.name,"ポメ", 0));
-			dogs.add(new Customer3(this.name,"サモエド", 0));
+			dogs.add(new Customer1("しばいぬ", 0));
+			dogs.add(new Customer2("ポメ", 0));
+			dogs.add(new Customer3("サモエド", 0));
 		}
 
 		System.out.println("\nお客さんがきた！");
@@ -164,7 +164,7 @@ public class Player {
 			default:
 				break;
 			}
-			
+			//客情報保存
 			save(file, dogs);
 			break;
 		case 1://無視する
@@ -227,18 +227,6 @@ public class Player {
 			;
 		}
 	}
-	
-	//新規保存
-		public static void newSave(File file, List<Customer> dogs) {
-			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true), "UTF-8"))) {
-				for (Customer customer : dogs) {
-					bw.write(customer.toCSV());
-					bw.newLine(); //セーブしたい情報の書き込み
-				}
-			} catch (IOException e) {
-				;
-			}
-		}
 
 	//読み込み
 	public static List<Customer> load(File file) {
@@ -248,18 +236,17 @@ public class Player {
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				String[] param = line.split(",");
-				String owner = param[0];
-				String name = param[1];
-				int love = Integer.parseInt(param[2]);
+				String name = param[0];
+				int love = Integer.parseInt(param[1]);
 
 				if (name.equals("しばいぬ")) {
-					Customer1 dog = new Customer1(owner,name, love);
+					Customer1 dog = new Customer1(name, love);
 					dogs.add(dog);
 				} else if (name.equals("ポメ")) {
-					Customer2 dog = new Customer2(owner,name, love);
+					Customer2 dog = new Customer2(name, love);
 					dogs.add(dog);
 				} else if (name.equals("サモエド")) {
-					Customer3 dog = new Customer3(owner,name, love);
+					Customer3 dog = new Customer3(name, love);
 					dogs.add(dog);
 				}
 			}

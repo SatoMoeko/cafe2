@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Customer3 extends Customer {
 
-	public Customer3(String owner,String name, int love) {
-		super(owner,"サモエド", love);
+	public Customer3(String name, int love) {
+		super("サモエド", love);
 	}
 
 	//クイズ選択

@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Customer2 extends Customer {
 
-	public Customer2(String owner,String name, int love) {
-		super(owner,"ポメ", love);
+	public Customer2(String name, int love) {
+		super("ポメ", love);
 	}
 
 	//クイズ選択
@@ -23,7 +23,7 @@ public class Customer2 extends Customer {
 
 	//クイズ１
 	public void customerQuiz1(Player player) {
-		System.out.println(this.name + "「ねむいから目が覚めるやつ！」\n");
+		System.out.println(this.name + "「ねむいから目が覚めるやつください！」\n");
 		String foodSelect = foodMenu();
 		String drinkSelect = drinkMenu();
 		System.out.println(foodSelect + "と" + drinkSelect + "を提供した！");
@@ -90,7 +90,7 @@ public class Customer2 extends Customer {
 	//フードメニュー表示
 	public String foodMenu() {
 		System.out.println("食べ物は何を提供する？");
-		String[] foods = { "カップケーキ", "ワッフル", "ハンバ－ガー", "ほねガム" };
+		String[] foods = { "カップケーキ", "ワッフル", "ハンバーガー", "ほねガム" };
 		for (int i = 0; i < foods.length; i++) {
 			System.out.println(foods[i] + ":" + (i + 1));
 		}

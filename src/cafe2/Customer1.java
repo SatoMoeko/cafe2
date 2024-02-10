@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Customer1 extends Customer {
 
-	public Customer1(String owner,String name, int love) {
-		super(owner,"しばいぬ", love);
+	public Customer1(String name, int love) {
+		super("しばいぬ", love);
 	}
 
 	//クイズ選択
@@ -66,7 +66,7 @@ public class Customer1 extends Customer {
 
 	//クイズ３
 	public void customerQuiz3(Player player) {
-		System.out.println(this.name + "「ちわ！今日は同僚もつれてきたよ。おしゃれなのおねがい」\n");
+		System.out.println(this.name + "「ちわ！今日は同僚もつれてきたよ。おしゃれなのおねがい」");
 		System.out.println("かいけん「すごくいいらしいって聞いてきちゃった！かるいやつほしいな」\n");
 		//しばいぬ
 		System.out.print(this.name + "の");

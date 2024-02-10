@@ -16,16 +16,15 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println(":::カフェ:::\n");
+		System.out.println("::Working inu cafe::\n");
 		Scanner scan = new Scanner(System.in);
 		File file = new File("save.csv");
 		List<Player> list = new ArrayList<>();
-		
 
 		// メニュー画面
 		while (true) {
-			System.out.println("\n~start menu~");
-			System.out.print("new cafe open:1\nつづきから:2\nおわり:3\n>");
+			System.out.println("\n《start menu》");
+			System.out.print("new cafe open:1\nつづきから:2\nデータをみる:3\nおわる:4\n>");
 			int select = new Scanner(System.in).nextInt() - 1;
 
 			switch (select) {
@@ -52,7 +51,7 @@ public class Main {
 					displayList(list);
 				}
 				System.out.printf("\n遊ぶデータを選んでね\n>");
-				int no = new Scanner(System.in).nextInt();
+				int no = new Scanner(System.in).nextInt() - 1;
 				Player player1 = list.get(no);
 				System.out.println(player1.getName() + " cafeに出勤したよ\n");
 
@@ -60,11 +59,25 @@ public class Main {
 				save(file, list);
 				break;
 
-			case 2: //終了する
-				System.out.println("おわりU・ω・Uノ");
+			case 2://データ整理
+				if (file.exists()) {
+					list = load(file);
+					if (list.size() == 0) {
+						System.out.println("データがありません");
+					} else {
+						displayList(list);
+						deleteCafe(list);
+						save(file, list);
+					}
+				} else {
+					System.out.println("データがありません");
+				}
+				break;
+			case 3: //終了する
+				System.out.println("ありがとうございましたU・ω・Uノ");
 				return;
 			default:
-				System.out.println("1～3から選んでね");
+				System.out.println("1～4から選んでね");
 			}
 		}
 	}
@@ -124,24 +137,43 @@ public class Main {
 	//保存リスト表示
 	static void displayList(List<Player> list) {
 		for (int i = 0; i < list.size(); i++) {
-			System.out.printf("No.%d≫%s", i, list.get(i).showLevel());
+			System.out.printf("\nNo.%d≫ %s", i + 1, list.get(i).showLevel());
 		}
 	}
 
-	
-	//新規保存
-		public static void newSave(File file, List<Player> list) {
-			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true), "UTF-8"))) {
-				for (Player player : list) {
-					bw.write(player.toCSV());
-					bw.newLine(); //セーブしたい情報の書き込み
-				}
-			} catch (IOException e) {
-				;
-			}
+	// 保存データ削除
+	static void deleteCafe(List<Player> list) {
+		System.out.print("\nデータを整理する？\nはい:1\nいいえ:2\n>");
+		int num = new Scanner(System.in).nextInt() - 1;
+
+		switch (num) {
+		case 0:
+			System.out.printf("\n消したいデータの番号を入力してね\n>");
+			int del = new Scanner(System.in).nextInt() - 1;
+			list.remove(del);
+			System.out.println("No." + (del + 1) + "のデータを消去しました\n");
+			break;
+		case 1:
+			break;
+		default:
+			System.out.printf("1か2を選んでね");
+			break;
 		}
-	
-	
+	}
+
+	//新規保存
+	public static void newSave(File file, List<Player> list) {
+		try (BufferedWriter bw = new BufferedWriter(
+				new OutputStreamWriter(new FileOutputStream(file, true), "UTF-8"))) {
+			for (Player player : list) {
+				bw.write(player.toCSV());
+				bw.newLine(); //セーブしたい情報の書き込み
+			}
+		} catch (IOException e) {
+			;
+		}
+	}
+
 	//上書き保存
 	public static void save(File file, List<Player> list) {
 		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {

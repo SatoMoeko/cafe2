@@ -20,13 +20,7 @@ public class Memo {
 	}
 
 	public void memory() {
-		File file = new File("save1.csv");
-		//リストをつくる
-		List<Customer> dogs = new ArrayList<>();
-		//リストに格納
-		dogs.add(new Customer1("しばいぬ", 0));
-		dogs.add(new Customer2("ポメ", 0));
-		dogs.add(new Customer3("サモエド", 0));
+
 	}
 
 	//保存
@@ -52,16 +46,6 @@ public class Memo {
 				String name = param[0];
 				int love = Integer.parseInt(param[1]);
 
-				if (name == "しばいぬ") {
-					Customer1 dog = new Customer1(name, love);
-					dogs.add(dog);
-				} else if (name == "ポメ") {
-					Customer2 dog = new Customer2(name, love);
-					dogs.add(dog);
-				} else if (name == "サモエド") {
-					Customer3 dog = new Customer3(name, love);
-					dogs.add(dog);
-				}
 			}
 		} catch (IOException e) {
 			;
