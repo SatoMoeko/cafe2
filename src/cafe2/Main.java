@@ -161,7 +161,7 @@ public class Main {
 		case 1:
 			break;
 		default:
-			System.out.printf("1か2を選んでね");
+			System.out.printf("1か2を選んでね\n");
 			break;
 		}
 	}
@@ -194,7 +194,7 @@ public class Main {
 				list.add(player);
 			}
 		} catch (IOException e) {
-			;
+			System.out.println("データがありません");
 		}
 		return list; //インスタンスを作って返す
 

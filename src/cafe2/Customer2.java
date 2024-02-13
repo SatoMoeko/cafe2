@@ -46,15 +46,18 @@ public class Customer2 extends Customer {
 	//クイズ２
 	public void customerQuiz2(Player player) {
 		System.out.println(this.name + "「今日はちょっと急いでるんだけどいけるかな」\n");
+		MeasureTime.start();
 		String foodSelect = foodMenu();
 		String drinkSelect = drinkMenu();
+		MeasureTime.end();
 		System.out.println(foodSelect + "と" + drinkSelect + "を提供した！");
+		long inputTime = MeasureTime.getTime() / 1000;
 
-		if (foodSelect.equals("") && drinkSelect.equals("")) {
+		if (inputTime < 5) {
 			System.out.println("「ありがとう！たすかる！」");
 			player.countLevel(20, 20, -5);
 			super.countLove(45);
-		} else if (foodSelect.equals("") || drinkSelect.equals("")) {
+		} else if (inputTime < 10) {
 			System.out.println("「ギリギリ！」");
 			player.countLevel(10, 10, -5);
 			super.countLove(30);

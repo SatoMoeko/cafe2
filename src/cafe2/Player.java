@@ -62,13 +62,10 @@ public class Player {
 			System.out.println("\n机と椅子を拭いた。飲食店に清潔感は大切");
 			countLevel(10, 5, -1);
 			break;
-		case 4:
+		default:
 			System.out.println("\n食器を洗った。うっかりカップを落として割った");
 			countLevel(-5, -5, -1);
 			break;
-		default:
-			break;
-
 		}
 	}
 
@@ -92,11 +89,9 @@ public class Player {
 			System.out.println("\n店員に愛想がないと口コミされてた……。反省");
 			countLevel(-10, -20, -1);
 			break;
-		case 4:
+		default:
 			System.out.println("\nプライベート用のSNSと間違えて投稿したけどなんかうけた。");
 			countLevel(10, -5, -1);
-			break;
-		default:
 			break;
 		}
 	}
@@ -121,11 +116,9 @@ public class Player {
 			System.out.println("\n外を眺めてぼんやりした。お客さんこないかな……");
 			countLevel(-1, -1, 1);
 			break;
-		case 4:
+		default:
 			System.out.println("\n偵察と称して隣町のカフェにいった。ケーキおいしい");
 			countLevel(5, -5, -2);
-			break;
-		default:
 			break;
 		}
 	}
@@ -144,36 +137,36 @@ public class Player {
 		}
 
 		System.out.println("\nお客さんがきた！");
-		System.out.printf("接客する:1\n無視する:2\n>");
-		int select = new Scanner(System.in).nextInt() - 1;
-
-		switch (select) {
-		case 0://注文をとる
-			System.out.println("\nいらっしゃいませ！ご注文は？");
-			int random = new Random().nextInt(3);
-			switch (random) {
-			case 0:
-				dogs.get(0).choiceQuiz(player);
+		
+			System.out.printf("接客する:1\n無視する:2\n>");
+			int select = new Scanner(System.in).nextInt() - 1;
+			switch (select) {
+			case 0://注文をとる
+				System.out.println("\nいらっしゃいませ！ご注文は？");
+				int random = new Random().nextInt(3);
+				switch (random) {
+				case 0:
+					dogs.get(0).choiceQuiz(player);
+					break;
+				case 1:
+					dogs.get(1).choiceQuiz(player);
+					break;
+				default:
+					dogs.get(2).choiceQuiz(player);
+					break;
+				}
+				//客情報保存
+				save(file, dogs);
 				break;
-			case 1:
-				dogs.get(1).choiceQuiz(player);
-				break;
-			case 2:
-				dogs.get(2).choiceQuiz(player);
+			case 1://無視する
+				System.out.println("\n最低のcafeだね");
+				countLevel(-50, -50, -5);
 				break;
 			default:
-				break;
+				System.out.println("1と2から選んでね\n");
+				serve(player);
 			}
-			//客情報保存
-			save(file, dogs);
-			break;
-		case 1://無視する
-			System.out.println("\n最低のcafeだね");
-			countLevel(-50, -50, -5);
-			break;
-		default:
-			System.out.println("1と2から選んでね\n");
-		}
+		
 
 	}
 
