@@ -36,7 +36,7 @@ public class Main {
 				System.out.println(player.getName() + " cafeがオープンしたよ\n");
 
 				work(player);
-				newSave(file, list);
+				save(file, list);
 				break;
 
 			case 1: //つづきからはじめる
@@ -150,6 +150,11 @@ public class Main {
 		case 0:
 			System.out.printf("\n消したいデータの番号を入力してね\n>");
 			int del = new Scanner(System.in).nextInt() - 1;
+			String dName = list.get(del).name;
+			 File f = new File(dName+".csv");
+		        if (f.exists()) {
+		            f.delete();
+		        }
 			list.remove(del);
 			System.out.println("No." + (del + 1) + "のデータを消去しました\n");
 			break;
@@ -161,20 +166,7 @@ public class Main {
 		}
 	}
 
-	//新規保存
-	public static void newSave(File file, List<Player> list) {
-		try (BufferedWriter bw = new BufferedWriter(
-				new OutputStreamWriter(new FileOutputStream(file, true), "UTF-8"))) {
-			for (Player player : list) {
-				bw.write(player.toCSV());
-				bw.newLine(); //セーブしたい情報の書き込み
-			}
-		} catch (IOException e) {
-			;
-		}
-	}
-
-	//上書き保存
+	//保存
 	public static void save(File file, List<Player> list) {
 		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
 			for (Player player : list) {
