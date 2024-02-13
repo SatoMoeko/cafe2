@@ -47,6 +47,7 @@ public class Main {
 				}
 				if (list.size() == 0) {
 					System.out.println("データがありません");
+					break;
 				} else {
 					displayList(list);
 				}
@@ -196,7 +197,7 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println("データがありません");
 		}
-		return list; //インスタンスを作って返す
+		return list; 
 
 	}
 

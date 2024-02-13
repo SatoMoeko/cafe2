@@ -92,7 +92,7 @@ public class Customer2 extends Customer {
 
 	//フードメニュー表示
 	public String foodMenu() {
-		System.out.println("食べ物は何を提供する？");
+		System.out.println("\n食べ物は何を提供する？");
 		String[] foods = { "カップケーキ", "ワッフル", "ハンバーガー", "ほねガム" };
 		for (int i = 0; i < foods.length; i++) {
 			System.out.println(foods[i] + ":" + (i + 1));
