@@ -72,7 +72,7 @@ public class Customer1 extends Customer {
 	public void customerQuiz3(Player player) throws InterruptedException {
 		String text =(this.name + "「ちわ！今日は同僚もつれてきたよ。おしゃれなのおねがい」\n");
 		String text2 =("かいけん「すごくいいらしいって聞いてきちゃった！かるいやつほしいな」\n");
-		int dispSpeedMsec = 50;
+		int dispSpeedMsec = 10;
 		TextSpeed.showText(text, dispSpeedMsec);
 		TextSpeed.showText(text2, dispSpeedMsec);
 		//しばいぬ
