@@ -136,7 +136,7 @@ public class Player {
 			dogs.add(new Customer3("サモエド", 0));
 		}
 
-		System.out.println("\nお客さんがきた！");
+		System.out.println("****あ！****\nお客さんがきた！");
 		
 			System.out.printf("接客する:1\n無視する:2\n>");
 			int select = new Scanner(System.in).nextInt() - 1;

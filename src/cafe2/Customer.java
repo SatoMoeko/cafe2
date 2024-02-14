@@ -15,7 +15,7 @@ public class Customer {
 	}
 
 	//クイズ部分
-	public void customerQuiz(Player player) {
+	public void customerQuiz(Player player)throws InterruptedException {
 
 	}
 

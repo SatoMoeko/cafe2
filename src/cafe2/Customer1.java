@@ -9,13 +9,17 @@ public class Customer1 extends Customer {
 	}
 
 	//クイズ選択
-	public void choiceQuiz(Player player) {
+	public void choiceQuiz(Player player)  {
 		if (this.love <= 35) {
 			customerQuiz1(player);
 		} else if (this.love < 80) {
 			customerQuiz2(player);
 		} else if (this.love >= 80) {
-			customerQuiz3(player);
+			try {
+				customerQuiz3(player);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -65,9 +69,12 @@ public class Customer1 extends Customer {
 	}
 
 	//クイズ３
-	public void customerQuiz3(Player player) {
-		System.out.println(this.name + "「ちわ！今日は同僚もつれてきたよ。おしゃれなのおねがい」");
-		System.out.println("かいけん「すごくいいらしいって聞いてきちゃった！かるいやつほしいな」\n");
+	public void customerQuiz3(Player player) throws InterruptedException {
+		String text =(this.name + "「ちわ！今日は同僚もつれてきたよ。おしゃれなのおねがい」\n");
+		String text2 =("かいけん「すごくいいらしいって聞いてきちゃった！かるいやつほしいな」\n");
+		int dispSpeedMsec = 50;
+		TextSpeed.showText(text, dispSpeedMsec);
+		TextSpeed.showText(text2, dispSpeedMsec);
 		//しばいぬ
 		System.out.print(this.name + "の");
 		String foodSelect = foodMenu();
@@ -82,8 +89,10 @@ public class Customer1 extends Customer {
 		System.out.println("かいけんに" + foodSelect1 + "と" + drinkSelect1 + "を提供した！");
 
 		if ((foodSelect.equals("スコーン")&& drinkSelect.equals("アイスティー")) && (foodSelect1.equals("いぬグミ") && drinkSelect1.equals("レモン水"))) {
-			System.out.println(this.name + "「すっかり" + player.name + " cafeがお気に入りだよ！」");
-			System.out.println("かいけん「" + player.name + "さんのセレクトいけてるね」");
+			String text3 =(this.name + "「すっかり" + player.name + " cafeがお気に入りだよ！」\n");
+			String text4 =("かいけん「" + player.name + "さんのセレクトいけてるね」");
+			TextSpeed.showText(text3, dispSpeedMsec);
+			TextSpeed.showText(text4, dispSpeedMsec);
 			player.countLevel(30, 30, -5);
 			super.countLove(-100);
 		} else if ((foodSelect.equals("スコーン") || drinkSelect.equals("アイスティー"))
